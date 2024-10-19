@@ -1,0 +1,53 @@
+
+.form {
+  margin-top: 8rem;
+  margin-left: 3rem;
+  position: relative;
+  rotate: -7deg;
+}
+
+.form::after {
+  content: "";
+  position: absolute;
+  background: #ffec74;
+  width: 300px;
+  height: 300px;
+  z-index: -1;
+  top: -2rem;
+  left: -2rem;
+  clip-path: polygon(
+    0 0,
+  100% 0,
+  100% 60%,
+  60% 100%,
+    0 100%,
+    0 0
+)
+}
+
+.form::before {
+  content: "";
+  position: absolute;
+  background: #ffec74;
+  z-index: -0;
+  top: 6.2rem;
+  left: 8.7rem;
+  rotate: 45deg;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+  border-top: 5rem solid transparent;
+  border-bottom: 5rem solid transparent;
+  border-right:5rem solid #d6c768;
+
+}
+
+.form label {
+  margin-bottom: 1rem;
+}
+
+.form button {
+  margin-top: 1rem;
+  margin-left: 0;
+}

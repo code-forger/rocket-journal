@@ -1,0 +1,22 @@
+.notebook {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding-left: 8rem;
+}
+
+@media (width <= 768px) {
+    .container {
+        padding-left: 6rem;
+    }
+}

@@ -1,0 +1,33 @@
+.notes {
+  text-align: left;
+  position: relative;
+  top: 1.2rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  top: -.2rem;
+}
+
+.note {
+  height: 2rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.note > p {
+  padding: 0;
+  margin: 0;
+}
+
+.note:hover > .hoverable {
+  display: block;
+}
+
+.complete {
+  text-decoration: line-through;
+}

@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
+    justify-content: space-between;
+}
+
+.header button {
+    padding: .75rem;
+}
+
+.title {
+    font-size: 2rem
+}
+
+.notebooksMenu {
+    display: none;
+    z-index: 1;
+}
+
+.notebooksMenu > button {
+    border: 1px solid #ccc;
+}
+
+@media (width <= 768px) {
+    .notebooksMenu {
+        display: block;
+    }
+}

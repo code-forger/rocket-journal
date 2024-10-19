@@ -1,0 +1,49 @@
+.paper {
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+
+}
+
+.vertical {
+  content: "";
+  position: absolute;
+    display: block;
+  height: 100vh;
+    width: 3px;
+    background: red;
+  opacity: .3;
+  margin-left: 8rem;
+}
+
+@media (width <= 768px) {
+  .vertical {
+    margin-left: 4rem;
+  }
+}
+
+.vertical.hasSidebar {
+    margin-left: 19rem;
+}
+
+@media (width <= 768px) {
+  .vertical.hasSidebar {
+    margin-left: 4rem;
+  }
+}
+
+.horizontal {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 2px;
+  width: 100vw;
+  background: #ccc;
+  opacity: .6;
+  top: calc(10.5rem + (var(--n, 0) * 2rem));
+  z-index: -1;
+}
