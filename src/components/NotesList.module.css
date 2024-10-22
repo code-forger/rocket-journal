@@ -31,3 +31,10 @@
 .complete {
   text-decoration: line-through;
 }
+
+.number {
+  position: absolute;
+    left: -4rem;
+  color: orangered;
+}
+

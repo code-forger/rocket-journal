@@ -2,75 +2,9 @@ import { type Notebook, Status } from '../definitions.ts';
 import { Icon } from './Icon.tsx';
 import type { NotebookState } from '../hooks/useNotebook.tsx';
 import React from 'react';
+import { getHighestNumber } from '../stateUtils/getHighestNumber.ts';
 import styles from './Tools.module.css';
-
-const newNotebookWithStatus =
-  ({
-    currentDateString,
-    noteId,
-    notebook,
-    setNotebook,
-    status,
-  }: {
-    currentDateString: string;
-    noteId: number;
-    notebook: Notebook;
-    setNotebook: NotebookState['setNotebook'];
-    status: Status;
-  }) =>
-  () => {
-    setNotebook({
-      ...notebook,
-      [currentDateString]: {
-        notes:
-          notebook[currentDateString]?.notes.map((nextNotes, id) =>
-            id === noteId ? { ...nextNotes, status } : nextNotes,
-          ) ?? [],
-      },
-    });
-  };
-
-const newNotebookWithPushedNote =
-  ({
-    currentDate,
-    currentDateString,
-    noteId,
-    notebook,
-    setNotebook,
-  }: {
-    currentDate: Date;
-    currentDateString: string;
-    notebook: Notebook;
-    noteId: number;
-    setNotebook: NotebookState['setNotebook'];
-  }) =>
-  () => {
-    const [nextDateString] = new Date(
-      new Date(currentDate).setDate(currentDate.getDate() + 1),
-    )
-      .toLocaleString()
-      .split(',');
-    const note = notebook[currentDateString]?.notes[noteId];
-
-    if (!note) {
-      throw new Error(
-        'Trying to copy a note that does not exist, since the user just clicked on the note, this should not happen',
-      );
-    }
-
-    setNotebook({
-      ...notebook,
-      [currentDateString]: {
-        notes:
-          notebook[currentDateString]?.notes.map((nextNotes, id) =>
-            id === noteId ? { ...nextNotes, status: Status.pushed } : nextNotes,
-          ) ?? [],
-      },
-      [nextDateString]: {
-        notes: [...(notebook[nextDateString]?.notes ?? []), note],
-      },
-    });
-  };
+import { useStateTransformers } from '../hooks/useStateTransformers.ts';
 
 export const Tools = ({
   noteId,
@@ -87,14 +21,13 @@ export const Tools = ({
   currentDateString: string;
   currentDate: Date;
 }) => {
-  const setStatus = (status: Status) =>
-    newNotebookWithStatus({
-      currentDateString,
-      noteId,
-      notebook,
-      setNotebook,
-      status,
-    });
+  const { setStatus, setNumber, pushNote } = useStateTransformers({
+    currentDate,
+    currentDateString,
+    noteId,
+    notebook,
+    setNotebook,
+  });
 
   return (
     <div className={`${styles.tools} ${className}`}>
@@ -105,13 +38,7 @@ export const Tools = ({
       />
       <Icon
         status={Status.pushed}
-        onClick={newNotebookWithPushedNote({
-          currentDate,
-          currentDateString,
-          noteId,
-          notebook,
-          setNotebook,
-        })}
+        onClick={pushNote()}
         className={styles.pushed}
       />
       <Icon
@@ -119,6 +46,13 @@ export const Tools = ({
         onClick={setStatus(Status.paused)}
         className={styles.paused}
       />
+      {getHighestNumber(notebook, currentDateString) < 3 && (
+        <Icon
+          status={Status.number}
+          onClick={setNumber()}
+          className={styles.number}
+        />
+      )}
     </div>
   );
 };

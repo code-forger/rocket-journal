@@ -7,11 +7,13 @@ export enum Status {
   pushed = 'p',
   paused = 'u',
   arrow = 'arrow',
+  number = 'number',
 }
 
 export type Note = {
   text: string;
   status: Status;
+  num?: number;
 };
 
 export type Notebook = Record<

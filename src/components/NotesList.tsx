@@ -29,6 +29,7 @@ export const NotesList = ({
             currentDate={currentDate}
           />
         )}
+        {note.num && <span className={styles.number}>{note.num}.</span>}
         <span className={styles.icon}>
           <Icon status={note.status} />
         </span>

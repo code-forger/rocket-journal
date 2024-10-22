@@ -7,7 +7,7 @@
   top: -.2rem;
   left: -4.5rem;
   z-index: 1;
-    display: none;
+     display: none;
 }
 
 .tools:hover {
@@ -42,16 +42,22 @@
 }
 
 .tools .complete {
-    top: 3px;
-  left: 40px;
+  top: -17px;
+  left: 35px;
 }
 
 .tools .pushed {
-  top: -20px;
-  left: -20px;
+  top: -17px;
+  left: -25px;
 }
 
 .tools .paused {
-  top: 25px;
-  left: -44px;
+    top: 22px;
+    left: -50px;
+}
+
+
+.tools .number {
+    top: 22px;
+    left: -38px;
 }
