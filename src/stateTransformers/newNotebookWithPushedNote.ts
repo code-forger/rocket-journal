@@ -38,7 +38,11 @@ export const newNotebookWithPushedNote =
           ) ?? [],
       },
       [nextDateString]: {
-        notes: [...(notebook[nextDateString]?.notes ?? []), note],
+        notes: [
+          ...(notebook[nextDateString]?.notes ?? []),
+          // Clear status and num from note by keeping only text.
+          { status: Status.active, text: note.text },
+        ],
       },
     });
   };

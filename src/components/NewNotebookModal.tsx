@@ -6,16 +6,18 @@ export const NewNotebookModal = () => {
   const [newNotebookModalOpen, setNewNotebookModalOpen] = React.useState(false);
   return (
     <>
-      <li>
-        <button
-          onClick={() => {
-            setNewNotebookModalOpen(true);
-          }}
-          className={`${commonStyles.listItem} ${commonStyles.separateItem}`}
-        >
-          Create New Notebook
-        </button>
-      </li>
+      <ul className={commonStyles.noListStyle}>
+        <li>
+          <button
+            onClick={() => {
+              setNewNotebookModalOpen(true);
+            }}
+            className={`${commonStyles.listItem} ${commonStyles.separateItem}`}
+          >
+            Create New Notebook
+          </button>
+        </li>
+      </ul>
       {newNotebookModalOpen && (
         <div className={commonStyles.modal}>
           <div className={commonStyles.modalContent}>

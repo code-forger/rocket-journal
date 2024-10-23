@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Notebooks.module.css';
+import commonStyles from './Notebooks.module.css';
 import { useNotebookNames } from '../hooks/useNotebooks.tsx';
 
 export const ManageNotebooksModal = () => {
@@ -8,19 +8,21 @@ export const ManageNotebooksModal = () => {
   const { notebookNames, setNotebookNames } = useNotebookNames();
   return (
     <>
-      <li>
-        <button
-          onClick={() => {
-            setManageNotebooksModalOpen(true);
-          }}
-          className={`${styles.listItem} ${styles.separateItem}`}
-        >
-          Manage Notebooks
-        </button>
-      </li>
+      <ul className={commonStyles.noListStyle}>
+        <li>
+          <button
+            onClick={() => {
+              setManageNotebooksModalOpen(true);
+            }}
+            className={`${commonStyles.listItem} ${commonStyles.separateItem}`}
+          >
+            Manage Notebooks
+          </button>
+        </li>
+      </ul>
       {manageNotebooksModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
+        <div className={commonStyles.modal}>
+          <div className={commonStyles.modalContent}>
             <h2>Manage Notebooks</h2>
             <ul>
               {notebookNames.map((name) => (
