@@ -2,10 +2,9 @@ import { type Notebook, Status } from '../definitions.ts';
 import { Icon } from './Icon.tsx';
 import type { NotebookState } from '../hooks/useNotebook.tsx';
 import React from 'react';
-import { getHighestNumber } from '../stateUtils/getHighestNumber.ts';
+import { getNotesNumber } from '../stateUtils/getNotesNumber.ts';
 import styles from './Tools.module.css';
 import { useStateTransformers } from '../hooks/useStateTransformers.ts';
-import { getNotesNumber } from '../stateUtils/getNotesNumber.ts';
 
 export const Tools = ({
   noteId,
