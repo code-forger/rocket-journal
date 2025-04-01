@@ -5,6 +5,7 @@ import React from 'react';
 import { getHighestNumber } from '../stateUtils/getHighestNumber.ts';
 import styles from './Tools.module.css';
 import { useStateTransformers } from '../hooks/useStateTransformers.ts';
+import { getNotesNumber } from '../stateUtils/getNotesNumber.ts';
 
 export const Tools = ({
   noteId,
@@ -46,7 +47,7 @@ export const Tools = ({
         onClick={setStatus(Status.paused)}
         className={styles.paused}
       />
-      {getHighestNumber(notebook, currentDateString) < 3 && (
+      {getNotesNumber(notebook, currentDateString, noteId) === -1 && (
         <Icon
           status={Status.number}
           onClick={setNumber()}

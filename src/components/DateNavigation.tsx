@@ -19,6 +19,27 @@ const nth = (num: number) => {
   }
 };
 
+const DateRender = ({ currentDate }: { currentDate: Date }) => (
+  <>
+    {currentDate.toLocaleDateString(navigator.language, {
+      weekday: 'long',
+    })}{' '}
+    the{' '}
+    {nth(
+      Number.parseInt(
+        currentDate.toLocaleDateString(navigator.language, {
+          day: 'numeric',
+        }),
+        10,
+      ),
+    )}{' '}
+    of{' '}
+    {currentDate.toLocaleDateString(navigator.language, {
+      month: 'long',
+    })}{' '}
+  </>
+);
+
 export const DateNavigation = ({
   currentDate,
   setCurrentDate,
@@ -32,7 +53,7 @@ export const DateNavigation = ({
     <button
       onClick={() => {
         const nextDate = new Date(
-          new Date(currentDate).setDate(currentDate.getDate() - 1),
+          new Date(currentDate).setDate(currentDate.getDate() - 7),
         );
         setCurrentDate(nextDate);
         setCurrentDateString(nextDate.toLocaleString().split(',')[0]);
@@ -41,23 +62,17 @@ export const DateNavigation = ({
       <Icon status={Status.arrow} className={styles.first} />
     </button>
     <h1>
-      {currentDate.toLocaleDateString(navigator.language, {
-        weekday: 'long',
-      })}{' '}
-      the{' '}
-      {nth(
-        Number.parseInt(
-          currentDate.toLocaleDateString(navigator.language, {
-            day: 'numeric',
-          }),
-          10,
-        ),
-      )}
+      <DateRender currentDate={currentDate} /> ==&gt;{' '}
+      <DateRender
+        currentDate={
+          new Date(new Date(currentDate).setDate(currentDate.getDate() + 4))
+        }
+      />
     </h1>
     <button
       onClick={() => {
         const nextDate = new Date(
-          new Date(currentDate).setDate(currentDate.getDate() + 1),
+          new Date(currentDate).setDate(currentDate.getDate() + 7),
         );
         setCurrentDate(nextDate);
         setCurrentDateString(nextDate.toLocaleString().split(',')[0]);

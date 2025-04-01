@@ -25,9 +25,19 @@ const useInitializeNotebook = (
   }, [notebook[currentDateString]]);
 };
 
+const getPreviousMonday = (): Date => {
+  const date = new Date();
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  const previousMonday = new Date(date);
+  previousMonday.setDate(date.getDate() + diff);
+  return previousMonday;
+};
+
 export const Notebook = (props: { notebookName: string }) => {
   const { notebook, setNotebook } = useNotebookStorage(props.notebookName);
-  const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
+  const [currentDate, setCurrentDate] =
+    React.useState<Date>(getPreviousMonday());
   const [currentDateString, setCurrentDateString] = React.useState<string>(
     currentDate.toLocaleString().split(',')[0],
   );

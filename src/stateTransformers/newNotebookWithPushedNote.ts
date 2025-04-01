@@ -17,7 +17,7 @@ export const newNotebookWithPushedNote =
   }) =>
   () => {
     const [nextDateString] = new Date(
-      new Date(currentDate).setDate(currentDate.getDate() + 1),
+      new Date(currentDate).setDate(currentDate.getDate() + 7),
     )
       .toLocaleString()
       .split(',');
